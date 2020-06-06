@@ -27,7 +27,13 @@
 
         <!-- Services-->
         <section class="page-section" id="tricks">
-            <h2 class="text-center mt-0">Tous les tricks</h2>
+            <h2 class="text-center mt-0">
+                {% if app.user.username is not defined %}
+                    All tricks
+                {% else %}
+                  Add a trick <button type="button" class="btn btn-primary" id="add_trick"><i class="fas fa-plus"></i></button>
+                {% endif %}
+            </h2>
             <div class="container-home">
 
 
