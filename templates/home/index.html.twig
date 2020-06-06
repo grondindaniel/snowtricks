@@ -31,7 +31,7 @@
                 {% if app.user.username is not defined %}
                     All tricks
                 {% else %}
-                  Add a trick <button type="button" class="btn btn-primary" id="add_trick"><i class="fas fa-plus"></i></button>
+                    Add a trick <a href="{{ path('add/trick') }}"><button type="button" class="btn btn-primary" id="add_trick"><i class="fas fa-plus"></i></button></a>
                 {% endif %}
             </h2>
             <div class="container-home">
