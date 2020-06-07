@@ -24,6 +24,7 @@
 
     <div class="container" style="margin-top: 10%;">
 
+
         {{ form_start(form) }}
 
         {{ form_label(form.name) }}
@@ -35,17 +36,54 @@
         {{ form_label(form.images) }}
         {{ form_widget(form.images) }}
 
+        <br>
+        <ul id="video-fields-list"
+            data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ form.videos|length }}">
+            {% for keywordsField in form.videos %}
+                <li>
+                    {{ form_errors(keywordsField) }}
+                    {{ form_widget(keywordsField) }}
+
+                </li>
+            {% endfor %}
+        </ul>
+
+
+        <br>
+        <button type="button"
+                class="btn btn-primary"
+                data-list-selector="#video-fields-list" style="background-color: tomato;">Add one or many videos
+        </button>
 
         <br><br>
         <button type="submit" class="btn btn-primary" style="background-color: tomato;">Send</button>
         {{ form_end(form) }}
 
-
-
     </div>
 
 {% endblock %}
+{% block javascripts %}
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.btn-primary').click(function (e) {
+                var list = jQuery(jQuery(this).attr('data-list-selector'));
+                var counter = list.data('widget-counter') || list.children().length;
+                var newWidget = list.attr('data-prototype')
+                newWidget = newWidget.replace(/__name__/g, counter);
+                counter++;
+                list.data('widget-counter', counter);
+                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+                newElem.appendTo(list);
+            });
+        });
+    </script>
+
+{% endblock %}
 {% block title %}
 
 {% endblock %}

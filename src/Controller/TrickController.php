@@ -19,10 +19,13 @@ class TrickController extends AbstractController
         $form = $this->createForm(TrickType::class);
         $form->handleRequest($request);
 
+
+
         if($form->isSubmitted() && $form->isValid())
         {
             $images = $form->get('images')->getData();
             $trick = $form->getData();
+
             foreach($images as $image)
             {
                 $fichier = md5(uniqid()).'.'.$image->guessExtension();
@@ -34,8 +37,13 @@ class TrickController extends AbstractController
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
+            $user = $this->getUser();
+            $creator = $user->getUsername();
+            $trick->setCreator($creator);
             $manager->persist($trick);
             $manager->flush();
+
+            return $this->redirectToRoute('home');
 
         }
         return $this->render('trick/add.html.twig', array('form'=>$form->createView()));

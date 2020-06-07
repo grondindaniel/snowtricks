@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Trick;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -35,6 +36,12 @@ class TrickType extends AbstractType
                 'attr' => array('multiple'=>true),
                 'multiple'=>true,
                 'data_class'=>null))
+            ->add('videos', CollectionType::class, array(
+                'entry_type'=> VideoType::class,
+                'allow_add'=> true,
+                'prototype' => true,
+                'by_reference'=>false,
+                'label'=>false))
         ;
     }
 
