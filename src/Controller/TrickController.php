@@ -61,11 +61,10 @@ class TrickController extends AbstractController
      * @param $id
      * @param ImageRepository $imageRepository
      * @param VideoRepository $videoRepository
-     * @param CommentType $commentType
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @param CommentRepository $commentRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
      */
     public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository, EntityManagerInterface $manager, Request $request, CommentRepository $commentRepository)
     {
@@ -90,9 +89,11 @@ class TrickController extends AbstractController
     }
 
 
-
     /**
      * @Route("remove/{id}", name="remove")
+     * @param EntityManagerInterface $manager
+     * @param Trick $trick
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function remove(EntityManagerInterface $manager, Trick $trick)
     {
