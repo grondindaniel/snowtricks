@@ -57,9 +57,17 @@ class TrickController extends AbstractController
 
     /**
      * @Route("/show/{id}", name="show")
+     * @param TrickRepository $trickRepository
+     * @param $id
+     * @param ImageRepository $imageRepository
+     * @param VideoRepository $videoRepository
+     * @param CommentType $commentType
+     * @param EntityManagerInterface $manager
+     * @param Request $request
+     * @param CommentRepository $commentRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository, CommentType
-    $commentType, EntityManagerInterface $manager, Request $request, CommentRepository $commentRepository)
+    public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository, EntityManagerInterface $manager, Request $request, CommentRepository $commentRepository)
     {
         $form = $this->createForm(CommentType::class);
         $form->handleRequest($request);
