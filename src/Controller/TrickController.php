@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Image;
+use App\Entity\Trick;
 use App\Form\TrickType;
+use App\Repository\ImageRepository;
+use App\Repository\TrickRepository;
+use App\Repository\VideoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,4 +52,27 @@ class TrickController extends AbstractController
         }
         return $this->render('trick/add.html.twig', array('form'=>$form->createView()));
     }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function show(Request $request, TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository)
+    {
+        $tricks = $trickRepository->findBy(array('id'=>$id));
+        $images = $imageRepository->findBy(array('trick'=>$id));
+        $video = $videoRepository->findBy(array('trick'=>$id));
+        return $this->render('trick/show.html.twig', array('trick'=>$tricks, 'images'=>$images, 'videos'=>$video));
+    }
+
+    /**
+     * @Route("remove/{id}", name="remove")
+     */
+    public function remove(EntityManagerInterface $manager, Trick $trick)
+    {
+        $manager->remove($trick);
+        $manager->flush();
+        return $this->redirectToRoute('home');
+    }
+
+
 }

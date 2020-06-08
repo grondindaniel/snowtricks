@@ -26,7 +26,17 @@ class TrickRepository extends ServiceEntityRepository
     public function trickHome()
     {
         return $this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function trickShow($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
             ->join('p.images', 'v')
+            ->setParameter('id', $id)
             ->addSelect('v')
             ->getQuery()
             ->getResult()

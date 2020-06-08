@@ -10320,4 +10320,37 @@ img {
     text-align: center;
     margin-top: 30px;
 }
+iframe{
+    max-width:200px;
+    max-height: 200px;
 
+}
+.show{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.img-one{
+    text-align: center;
+}
+.img-one img{
+    width: 50%;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: tomato;
+    font-size: 3em;
+}
+.trick-info{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.trick-info1{
+    padding: 30px;
+}
