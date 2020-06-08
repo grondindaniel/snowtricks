@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Image;
 use App\Entity\Trick;
+use App\Form\CommentType;
 use App\Form\TrickType;
+use App\Repository\CommentRepository;
 use App\Repository\ImageRepository;
 use App\Repository\TrickRepository;
 use App\Repository\VideoRepository;
@@ -56,13 +58,30 @@ class TrickController extends AbstractController
     /**
      * @Route("/show/{id}", name="show")
      */
-    public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository)
+    public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository, CommentType
+    $commentType, EntityManagerInterface $manager, Request $request, CommentRepository $commentRepository)
     {
+        $form = $this->createForm(CommentType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $comment = $form->getData();
+            $user = $this->getUser();
+            $author = $user->getUsername();
+            $comment->setAuthor($author);
+            $comment->setTrick($id);
+            $manager->persist($comment);
+            $manager->flush();
+        }
+        $comments = $commentRepository->findBy(array('trick'=>$id));
         $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
-        return $this->render('trick/show.html.twig', array('trick'=>$tricks, 'images'=>$images, 'videos'=>$video));
+        return $this->render('trick/show.html.twig', array('trick'=>$tricks,'comments'=>$comments, 'images'=>$images, 'videos'=>$video,'form'=>$form->createView()));
     }
+
+
 
     /**
      * @Route("remove/{id}", name="remove")

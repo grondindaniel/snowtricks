@@ -61,6 +61,22 @@
             <div class="trick-info1"> Author : {{ trick.0.creator }}</div>  <div class="trick-info1"> Group : {{ trick.0.list }}</div> <div class="trick-info1"> Date : {{ trick.0.createdAt | date("m/d/Y") }}</div>
         </span>
         <hr>
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                {{ form_widget(form.content) }}
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" style="background-color: tomato">leave a comment</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <hr>
+        {% for comment in comments %}
+            <div class="alert alert-secondary">
+                <strong>{{ comment.author }} a commenté : </strong> {{ comment.content }}</a>.
+            </div>
+        {% endfor %}
     </div>
 
 
