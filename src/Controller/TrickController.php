@@ -56,7 +56,7 @@ class TrickController extends AbstractController
     /**
      * @Route("/show/{id}", name="show")
      */
-    public function show(Request $request, TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository)
+    public function show(TrickRepository $trickRepository, $id, ImageRepository $imageRepository, VideoRepository $videoRepository)
     {
         $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
