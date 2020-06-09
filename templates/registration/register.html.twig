@@ -23,13 +23,18 @@
                         label: 'Password'
                     }) }}
 
-
                     <button class="btn btn-lg btn-primary" type="submit">
                         Create an account
                     </button>
                     {{ form_end(registrationForm) }}
+
                 </div>
             </div>
+            <div class="forgot" style="position: relative; text-align: center; top: 10px;">
+                <a href="{{ path('app_login') }}" style="color: white; position: relative;" >Already an account ?</a>
+            </div>
         </div>
+
     </header>
+
 {% endblock %}

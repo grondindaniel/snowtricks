@@ -34,7 +34,7 @@
         {{ form_label(form.list) }}
         {{ form_widget(form.list) }}
         {{ form_label(form.images) }}
-        {{ form_widget(form.images) }}
+        {{ form_widget(form.images,{attr: {'placeholder': 'Select an image'}}) }}
 
         <br>
         <ul id="video-fields-list"
@@ -80,6 +80,14 @@
                 var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
                 newElem.appendTo(list);
             });
+        });
+    </script>
+    <script>
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
         });
     </script>
 

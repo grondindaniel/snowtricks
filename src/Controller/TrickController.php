@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Image;
 use App\Entity\Trick;
+use App\Entity\Video;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CommentRepository;
@@ -91,15 +92,72 @@ class TrickController extends AbstractController
 
     /**
      * @Route("remove/{id}", name="remove")
-     * @param EntityManagerInterface $manager
-     * @param Trick $trick
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function remove(EntityManagerInterface $manager, Trick $trick)
     {
         $manager->remove($trick);
         $manager->flush();
         return $this->redirectToRoute('home');
+    }
+
+
+    /**
+     * @Route("removeImg/{id}", name="removeImg")
+     * @param EntityManagerInterface $manager
+     * @param Trick $trick
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeImg(EntityManagerInterface $manager, Image $image)
+    {
+        $manager->remove($image);
+        $manager->flush();
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("removeVid/{id}", name="removeVid")
+     * @param EntityManagerInterface $manager
+     * @param Trick $trick
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeVid(EntityManagerInterface $manager, Video $video)
+    {
+        $manager->remove($video);
+        $manager->flush();
+        return $this->redirectToRoute('home');
+    }
+
+
+    /**
+     * @Route("edit/{id}", name="edit")
+     */
+    public function edit(EntityManagerInterface $manager, Request $request, Trick $trick, ImageRepository $imageRepository, $id, VideoRepository $videoRepository)
+    {
+        $form = $this->createForm(TrickType::class, $trick);
+        $images = $imageRepository->findBy(array('trick'=>$id));
+        $video = $videoRepository->findBy(array('trick'=>$id));
+        $form->handleRequest($request);
+        $images2 = $form->get('images')->getData();
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            foreach($images2 as $image)
+            {
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                $img = new Image();
+                $img->setName($fichier);
+                $trick->addImage($img);
+            }
+            $manager->persist($trick);
+            $manager->flush();
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render("trick/edit.html.twig", array('images'=>$images,'videos'=>$video,'id'=>$id,'form'=>$form->createView()));
     }
 
 

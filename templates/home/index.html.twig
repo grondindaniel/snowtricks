@@ -46,7 +46,7 @@
                             {% if app.user.username is not defined %}
                         <p></p>
                             {% elseif is_granted('ROLE_ADMIN') or trick.creator == app.user.username %}
-                                <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                                <a href="{{ path('edit',{id: trick.id}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="confirmation" data-message="Voulez-vous vraiment supprimer ?" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
                             {% endif %}
                         </p>

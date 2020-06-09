@@ -22,15 +22,14 @@ class TrickType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('list', ChoiceType::class, array(
                 'choices'=>array(
-                   'Les grabs'=>'The grabs',
-                   'Les rotations'=>'The rotations',
-                   'Les flips'=>'The flips',
-                   'Les slides'=>'The slides',
-                   'Les one foot tricks'=>'The one foot tricks'
+                   'The grabs'=>'The grabs',
+                   'The rotations'=>'The rotations',
+                   'The flips'=>'The flips',
+                   'The slides'=>'The slides',
+                   'The one foot tricks'=>'The one foot tricks'
                 )
             ))
             ->add('images',FileType::class, array(
-                'label'=>'Select one or more images',
                 'mapped'=>false,
                 'required' => false,
                 'attr' => array('multiple'=>true),

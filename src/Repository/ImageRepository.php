@@ -22,8 +22,8 @@ class ImageRepository extends ServiceEntityRepository
     // /**
     //  * @return Image[] Returns an array of Image objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function removeImg($value)
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')
@@ -34,7 +34,7 @@ class ImageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Image

@@ -60,7 +60,9 @@
         <span class="trick-info">
             <div class="trick-info1"> Author : {{ trick.0.creator }}</div>  <div class="trick-info1"> Group : {{ trick.0.list }}</div> <div class="trick-info1"> Date : {{ trick.0.createdAt | date("m/d/Y") }}</div>
         </span>
-        <hr>
+
+        {% if app.user.username is defined %}
+            <hr>
         <div class="row">
             <div class="col-md-8">
                 {{ form_start(form) }}
@@ -71,6 +73,7 @@
             </div>
             {{ form_end(form) }}
         </div>
+        {% endif %}
         <hr>
         {% for comment in comments %}
             <div class="alert alert-secondary">
