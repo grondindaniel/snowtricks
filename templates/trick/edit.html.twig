@@ -101,7 +101,7 @@
                 </ul>
                 <button type="button"
                         class="btn btn-primary"
-                        data-list-selector="#video-fields-list" style="background-color: tomato;float: right;margin-top: 10px;">Add one or many videos
+                        data-list-selector="#video-fields-list" style="background-color: tomato;float: right;margin-top: 10px;">Click to add embed videos
                 </button>
             </div>
         </div>
@@ -129,8 +129,8 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Delete trick</h4>
                     </div>
-                    <div class="modal-body">
-                        <a href="{{ path('remove',{id: id}) }}" data-toggle="confirmation"> <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                    <div class="modal-body" style="text-align: center;">
+                        <a href="{{ path('remove',{id: id}) }}"> <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

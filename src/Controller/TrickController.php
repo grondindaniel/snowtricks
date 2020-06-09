@@ -124,7 +124,7 @@ class TrickController extends AbstractController
     {
         $manager->remove($video);
         $manager->flush();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('/');
     }
 
 

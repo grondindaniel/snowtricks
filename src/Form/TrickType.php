@@ -19,7 +19,8 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, array(
+                'attr' => array('cols' => '5', 'rows' => '15')))
             ->add('list', ChoiceType::class, array(
                 'choices'=>array(
                    'The grabs'=>'The grabs',
