@@ -32,6 +32,7 @@
             </h2>
             <div class="container-home">
                 {% for trick in tricks %}
+                <a href="{{ path('show',{id: trick.id}) }}">
                 <div class="card2">
                     <div class="blogBox moreBox" style="display: none;">
                         {% if trick.images.0.name is defined %}
@@ -41,17 +42,14 @@
                         {% endif %}
                     <div class="container2">
                         <p>
-
-                            <a href="{{ path('show',{id: trick.id}) }}">{{ trick.name }}</a>
+                          {{ trick.name }}</a>
                             {% if app.user.username is not defined %}
                         <p></p>
                             {% elseif is_granted('ROLE_ADMIN') or trick.creator == app.user.username %}
                                 <a href="{{ path('edit',{id: trick.id}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
-                               <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="modal" data-target="#modal1{{ trick.id }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
+                                   <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="modal" data-target="#modal1{{ trick.id }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                 <div id="modal1{{ trick.id }}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
-
-                                        <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">Delete trick</h4>
@@ -76,13 +74,27 @@
             <div id="loadMore" style="color: tomato">
                 Load More
             </div>
+
+            <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+            <!-- Smatphone menu -->
+            <div class="navbar navbar-expand-lg navbar-light" id="mainNav2">
+                <div class="container">
+                    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                        <i class="fas fa-home"></i></a>
+                    <a href="" style="color: black;">
+                        {% if app.user.email is defined  %}
+                            <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt" style="color: black;"></i></a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" style="color: black;"></i></a></li>
+                        {% endif %}
+
+                    </a>
+                </div>
+            </div>
+
         </section>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         </body>
+
 {% endblock %}

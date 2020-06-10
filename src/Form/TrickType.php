@@ -22,6 +22,7 @@ class TrickType extends AbstractType
             ->add('description', TextareaType::class, array(
                 'attr' => array('cols' => '5', 'rows' => '15')))
             ->add('list', ChoiceType::class, array(
+                'label'=>'Trikcs list groups',
                 'choices'=>array(
                    'The grabs'=>'The grabs',
                    'The rotations'=>'The rotations',

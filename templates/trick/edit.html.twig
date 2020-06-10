@@ -36,45 +36,144 @@
         </div>
 
         <hr>
+        <div class="smart" id="colapse">
+            <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>
+            <div id="demo" class="collapse">
         <div class="show">
-
             {% for ima in images %}
-                <!-- The Modal -->
-                <div class="modal" id="myModal">
+                <div class="card2">
+                    <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
+                        <div class="container2">
+                            <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal1{{ ima.id }}" >
+                            <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                            </a>
+                        </div>
+                </div>
+                <div id="modal1{{ ima.id }}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Edit an image</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Delete image</h4>
                             </div>
                             <div class="modal-body">
+                                <a href="{{ path('removeImg',{id: ima.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            <div class="card2">
-                <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
-                <div class="container2">
-                  <a href="{{ path('removeImg',{id: ima.id}) }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
-                </div>
-            </div>
             {% endfor %}
 
+
             <div class="card2">
-            {% for video in videos %}
-                {% autoescape %}
-                    {{ video.name | raw }}
-                <div class="container2">
-                    <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
-                    <a href="{{ path('removeVid',{id: video.id}) }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
-                </div>
-                {% endautoescape %}
-            {% endfor %}
+                {% for video in videos %}
+                    {% autoescape %}
+                        {{ video.name | raw }}
+                    <div class="container2">
+                        <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                        <a href="{{ path('removeVid',{id: video.id}) }}" data-toggle="modal" data-target="#modal2{{ video.id }}" >
+                        <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                        </a>
+                    </div>
+                    {% endautoescape %}
+                    <div id="modal2{{ video.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete video</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <a href="{{ path('removeVid',{id: video.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
+            </div>
+        </div>
+        <div class="notSmart" id="Notcolapse">
+                <div class="show">
+                    {% for ima in images %}
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit an image</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card2">
+                            <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
+                            <div class="container2">
+                                <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal3{{ ima.id }}" >
+                                <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="modal3{{ ima.id }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Delete image</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <a href="{{ path('removeImg',{id: ima.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="card2">
+                        {% for video in videos %}
+                            {% autoescape %}
+                                {{ video.name | raw }}
+                                <div class="container2">
+                                    <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                                    <a href="{{ path('removeVid',{id: video.id}) }}" data-toggle="modal" data-target="#modal24{{ video.id }}" >
+                                    <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                                    </a>
+                                </div>
+                            {% endautoescape %}
+
+                            <div id="modal4{{ video.id }}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Delete video</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <a href="{{ path('removeVid',{id: video.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
         <hr>
 
         {{ form_start(form) }}
@@ -110,12 +209,9 @@
                 {{ form_label(form.list) }}
                 {{ form_widget(form.list) }}
             </div>
-            <div class="col-md-6">
-
-                <button type="submit" class="btn btn-primary" style="background-color: forestgreen;float: right; margin-top: 30px;">Save</button>
-
+            <div class="col-md-6"  id="valid-edit">
+                <button type="submit" class="btn btn-success" style="background-color: forestgreen;float: right; margin-top: 30px; margin-right: 20px;">Save</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal1{{ id }}" style="margin-top: 30px;float: right;margin-right: 30px;">Delete</button>
-
             </div>
         </div>
 
@@ -136,12 +232,25 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-<br><br>
+    <p class="space"></p>
+    <!-- Smatphone menu -->
+    <div class="navbar navbar-expand-lg navbar-light" id="mainNav2">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="{{ path('home') }}#page-top">
+                <i class="fas fa-home"></i></a>
+            <a href="" style="color: black;">
+                {% if app.user.email is defined  %}
+                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt" style="color: black;"></i></a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" style="color: black;"></i></a></li>
+                {% endif %}
+
+            </a>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
 

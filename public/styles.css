@@ -1973,15 +1973,103 @@ pre code {
     .card{
         width: 360px!important;
     }
+    .card2{
+        width: 360px!important;
+    }
+    .centered {
+        position: absolute;
+        top: 100px!important;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: tomato;
+        font-size: 2em!important;
+    }
+    .img-thumbnail {
+        padding: 0.25rem;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        width: 80% !important;
+        height: 200px;
+        margin-bottom: 10px;
+    }
+    #colapse{
+        visibility: visible;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+    }
+    #demoB{
+        background-color: tomato!important;
+        color: white;
+        margin-bottom: 10px;
+    }
+    .trick-info{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .trick-info1{
+        padding: 0!important;
+        text-align: center;
+    }
+    #valid-edit{
+        display: flex;
+        flex-direction: row;
+        justify-content: center!important;
+
+    }
+    .space{
+        height: 200px;
+    }
+    #Notcolapse{
+        display: none;
+    }
     #mainNav{
         display: none;
     }
-    #mainNav2{
+    #mainNav2 {
         position: fixed;
         bottom: 0;
         background-color: #C4C2C0;
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center!important;
     }
+    #mainNav2 .container{
+        position: fixed;
+        bottom: 0;
+        background-color: #C4C2C0;
+        width: 100%;
+        height: 55px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around!important;
+        color: black!important;
+        font-size: 1.5em;
+    }
+    header.masthead {
+        padding-top: 19rem!important;
+        padding-bottom: calc(10rem - 4.5rem);
+        background: linear-gradient(to bottom, rgba(92, 77, 66, 0.2) 0%, rgba(92, 77, 66, 0.6) 100%), url("../img/bg-masthead.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+    .btn-xl {
+        position: absolute;
+        bottom: 35px!important;
+        right: 0;
+        padding: 1rem 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 10rem;
+    }
+
 }
 @media (max-width: 767.98px) {
     .table-responsive-md {
@@ -1995,7 +2083,7 @@ pre code {
     }
 
 }
-@media (max-width: 991.98px) {
+@media (min-width: 991.98px) {
     .table-responsive-lg {
         display: block;
         width: 100%;
@@ -2005,6 +2093,15 @@ pre code {
     .table-responsive-lg > .table-bordered {
         border: 0;
     }
+    #colapse{
+        visibility: hidden;
+    }
+    #Notcolapse{
+        visibility: visible;
+    }
+
+
+
 }
 @media (max-width: 1199.98px) {
     .table-responsive-xl {
@@ -10357,4 +10454,32 @@ iframe{
 .comment-field{
     display: flex;
     justify-content: center;
+}
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 5px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#myBtn:hover {
+    background-color: #555;
+}
+
+
+#myBtn{
+    background-color: tomato;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
