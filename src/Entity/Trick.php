@@ -131,13 +131,6 @@ class Trick
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = new \DateTime('now');
-
-        return $this;
-    }
-
     public function getUpdateAt(): ?\DateTimeInterface
     {
         return $this->update_at;
