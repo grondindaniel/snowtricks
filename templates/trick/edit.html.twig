@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
     {% block nav %}
         <!-- Navigation-->
@@ -21,7 +20,6 @@
             </div>
         </nav>
     {% endblock %}
-
     <div class="container" style="margin-top: 10%;">
         <div class="img-one">
             <div class="card3">
@@ -40,23 +38,17 @@
                 <div class="card2">
                     <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
                         <div class="container2">
-                            <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal1{{ ima.id }}" >
-                            <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
-                            </a>
+                            <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal1{{ ima.id }}" ><i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
                         </div>
                 </div>
                 <div id="modal1{{ ima.id }}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Delete image</h4>
-                            </div>
+                            <div class="modal-header"><h4 class="modal-title">Delete image</h4></div>
                             <div class="modal-body">
                                 <a href="{{ path('removeImg',{id: ima.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+                            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button</div>
                         </div>
                     </div>
                 </div>
@@ -146,7 +138,6 @@
                                     </a>
                                 </div>
                             {% endautoescape %}
-
                             <div id="modal4{{ video.id }}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -156,9 +147,7 @@
                                         <div class="modal-body">
                                             <a href="{{ path('removeVid',{id: video.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
+                                        <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -167,39 +156,20 @@
                 </div>
             </div>
         <hr>
-        {{ form_start(form) }}
-        {{ form_label(form.name) }}
-        {{ form_widget(form.name) }}
-        {{ form_label(form.description) }}
+        {{ form_start(form) }}{{ form_label(form.name) }}
+        {{ form_widget(form.name) }}{{ form_label(form.description) }}
         {{ form_widget(form.description) }}
         <div class="row">
+            <div class="col-md-6">{{ form_label(form.images) }}{{ form_widget(form.images,{attr: {'placeholder': 'Select one image or many images'}}) }></div>
             <div class="col-md-6">
-                {{ form_label(form.images) }}
-                {{ form_widget(form.images,{attr: {'placeholder': 'Select one image or many images'}}) }}
-            </div>
-            <div class="col-md-6">
-                <ul id="video-fields-list"
-                    data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}"
-                    data-widget-tags="{{ '<li></li>'|e }}"
-                    data-widget-counter="{{ form.videos|length }}">
-                    {% for keywordsField in form.videos %}
-                        <li>
-                            {{ form_errors(keywordsField) }}
-                            {{ form_widget(keywordsField) }}
-                        </li>
-                    {% endfor %}
+                <ul id="video-fields-list" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.videos|length }}">
+                    {% for keywordsField in form.videos %}<li>{{ form_errors(keywordsField) }}{{ form_widget(keywordsField) }}</li>{% endfor %}
                 </ul>
-                <button type="button"
-                        class="btn btn-primary"
-                        data-list-selector="#video-fields-list" style="background-color: tomato;float: right;margin-top: 10px;">Click to add embed videos
-                </button>
+                <button type="button" class="btn btn-primary" data-list-selector="#video-fields-list" style="background-color: tomato;float: right;margin-top: 10px;">Click to add embed videos</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                {{ form_label(form.list) }}
-                {{ form_widget(form.list) }}
-            </div>
+            <div class="col-md-6">{{ form_label(form.list) }}{{ form_widget(form.list) }}</div>
             <div class="col-md-6"  id="valid-edit">
                 <button type="submit" class="btn btn-success" style="background-color: forestgreen;float: right; margin-top: 30px; margin-right: 20px;">Save</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal1{{ id }}" style="margin-top: 30px;float: right;margin-right: 30px;">Delete</button>
@@ -208,39 +178,15 @@
         {{ form_end(form) }}
         <div id="modal1{{ id }}" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
-                <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete trick</h4>
-                    </div>
-                    <div class="modal-body" style="text-align: center;">
-                        <a href="{{ path('remove',{id: id}) }}"> <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                    <div class="modal-header"><h4 class="modal-title">Delete trick</h4></div>
+                    <div class="modal-body" style="text-align: center;"><a href="{{ path('remove',{id: id}) }}"> <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a></div>
+                    <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
                 </div>
             </div>
         </div>
     </div>
     <p class="space"></p>
-    <!-- Smatphone menu -->
-    <div class="navbar navbar-expand-lg navbar-light" id="mainNav2">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="{{ path('home') }}#page-top">
-                <i class="fas fa-home"></i></a>
-            <a href="" style="color: black;">
-                {% if app.user.email is defined  %}
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt" style="color: black;"></i></a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" style="color: black;"></i></a></li>
-                {% endif %}
-            </a>
-        </div>
-    </div>
-    <br>
+{{ parent() }}
 {% endblock %}
 {% block javascripts %}{% endblock %}
-
-
