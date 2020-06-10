@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
 
             $mailer->send($email);
             ;
-            $this->addFlash('message', 'E-mail de réinitialisation du mot de passe envoyé !');
+            $this->addFlash('message', 'Email send !');
             return $this->redirectToRoute('app_login');
         }
 
@@ -82,7 +82,7 @@ class SecurityController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('message', 'Mot de passe mis à jour');
+            $this->addFlash('message', 'Password update');
             return $this->redirectToRoute('app_login');
         }else
         {
