@@ -1,6 +1,13 @@
 {
-    "type": "project",
-    "license": "proprietary",
+    "name": "danielgrondin/snwotricks",
+    "description": "School project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "grondindaniel",
+            "email": "daniel.grondin@ac-nantes.fr"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "ext-ctype": "*",

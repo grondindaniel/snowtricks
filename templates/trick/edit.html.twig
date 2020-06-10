@@ -2,7 +2,6 @@
 
 {% block body %}
     {% block nav %}
-
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: #C4C2C0;">
             <div class="container">
@@ -24,7 +23,6 @@
     {% endblock %}
 
     <div class="container" style="margin-top: 10%;">
-
         <div class="img-one">
             <div class="card3">
                 {% if images.0.name is defined %}
@@ -33,9 +31,7 @@
                     <img src="{{ asset('img/mac.png') }}" style="width: 100%">
                 {% endif %}
             </div>
-        </div>
-
-        <hr>
+        </div><hr>
         <div class="smart" id="colapse">
             <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>
             <div id="demo" class="collapse">
@@ -65,8 +61,6 @@
                     </div>
                 </div>
             {% endfor %}
-
-
             <div class="card2">
                 {% for video in videos %}
                     {% autoescape %}
@@ -141,7 +135,6 @@
                             </div>
                         </div>
                     {% endfor %}
-
                     <div class="card2">
                         {% for video in videos %}
                             {% autoescape %}
@@ -173,9 +166,7 @@
                     </div>
                 </div>
             </div>
-
         <hr>
-
         {{ form_start(form) }}
         {{ form_label(form.name) }}
         {{ form_widget(form.name) }}
@@ -214,9 +205,7 @@
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal1{{ id }}" style="margin-top: 30px;float: right;margin-right: 30px;">Delete</button>
             </div>
         </div>
-
         {{ form_end(form) }}
-
         <div id="modal1{{ id }}" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -247,45 +236,11 @@
                 {% else %}
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" style="color: black;"></i></a></li>
                 {% endif %}
-
             </a>
         </div>
     </div>
+    <br>
 {% endblock %}
-{% block javascripts %}
+{% block javascripts %}{% endblock %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        jQuery(document).ready(function () {
-            jQuery('.btn-primary').click(function (e) {
-                var list = jQuery(jQuery(this).attr('data-list-selector'));
-                var counter = list.data('widget-counter') || list.children().length;
-                var newWidget = list.attr('data-prototype')
-                newWidget = newWidget.replace(/__name__/g, counter);
-                counter++;
-                list.data('widget-counter', counter);
-                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
-                newElem.appendTo(list);
-            });
-        });
-    </script>
-    <script>
-        $('.custom-file-input').on('change', function(event) {
-            var inputFile = event.currentTarget;
-            $(inputFile).parent()
-                .find('.custom-file-label')
-                .html(inputFile.files[0].name);
-        });
-    </script>
-    <script>
-        $('[data-toggle="confirmation"][data-message]').on("click", function(event){
-            var message = $(this).data('message');
-            return confirm(message) || event.preventDefault();
-        });
-    </script>
-{% endblock %}
-{% block title %}
-
-{% endblock %}
 
