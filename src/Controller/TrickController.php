@@ -47,8 +47,15 @@ class TrickController extends AbstractController
             $user = $this->getUser();
             $creator = $user->getUsername();
             $trick->setCreator($creator);
-            $manager->persist($trick);
-            $manager->flush();
+            try{
+                $manager -> persist ( $trick );
+                $manager -> flush ();
+                $this->addFlash('success', 'Cool ! your trick is created. Thank\'s for the community');
+            } catch (\Exception $e) {
+                $this->addFlash('warning', 'nope, this name already exists...try with an other.');
+                return $this->redirectToRoute('home');
+            }
+
 
             return $this->redirectToRoute('home');
 
@@ -152,8 +159,14 @@ class TrickController extends AbstractController
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
-            $manager->persist($trick);
-            $manager->flush();
+            try{
+                $manager -> persist ( $trick );
+                $manager -> flush ();
+                $this->addFlash('updateok', 'Your trick is now updated ! Thank\'s');
+            } catch (\Exception $e) {
+                $this->addFlash('updatebad', 'Oups...something goes wrong, please try again');
+                return $this->redirectToRoute('home');
+            }
             return $this->redirectToRoute('home');
         }
 

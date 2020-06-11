@@ -21,88 +21,73 @@
         </nav>
     {% endblock %}
     <div class="container" style="margin-top: 10%;">
-        <div class="img-one">
-            <div class="card3">
-                {% if images.0.name is defined %}
-                    <img src="{{ asset('uploads/'~ images.0.name) }}">
-                {% else %}
-                    <img src="{{ asset('img/mac.png') }}" style="width: 100%">
-                {% endif %}
+            <div class="img-one">
+                <div class="card3">
+                    {% if images.0.name is defined %}
+                        <img src="{{ asset('uploads/'~ images.0.name) }}">
+                    {% else %}
+                        <img src="{{ asset('img/mac.png') }}" style="width: 100%">
+                    {% endif %}
+                </div>
             </div>
-        </div><hr>
+        <hr>
         <div class="smart" id="colapse">
-            <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>
-            <div id="demo" class="collapse">
-        <div class="show">
-            {% for ima in images %}
-                <div class="card2">
-                    <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
-                        <div class="container2">
-                            <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal1{{ ima.id }}" ><i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
-                        </div>
-                </div>
-                <div id="modal1{{ ima.id }}" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header"><h4 class="modal-title">Delete image</h4></div>
-                            <div class="modal-body">
-                                <a href="{{ path('removeImg',{id: ima.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
-                            </div>
-                            <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button</div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            <div class="card2">
-                {% for video in videos %}
-                    {% autoescape %}
-                        {{ video.name | raw }}
-                    <div class="container2">
-                        <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
-                        <a href="{{ path('removeVid',{id: video.id}) }}" data-toggle="modal" data-target="#modal2{{ video.id }}" >
-                        <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
-                        </a>
-                    </div>
-                    {% endautoescape %}
-                    <div id="modal2{{ video.id }}" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete video</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <a href="{{ path('removeVid',{id: video.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>
+                    <div id="demo" class="collapse">
+                        <div class="show">
+                            {% for ima in images %}
+                            <div class="card2">
+                                <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
+                                <div class="container2">
+                                    <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal1{{ ima.id }}" ><i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                 </div>
                             </div>
+                            <div id="modal1{{ ima.id }}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header"><h4 class="modal-title">Delete image</h4></div>
+                                        <div class="modal-body">
+                                            <a href="{{ path('removeImg',{id: ima.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                                        </div>
+                                        <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                            <div class="card2">
+                                {% for video in videos %}
+                                    {% autoescape %}
+                                        {{ video.name | raw }}
+                                        <div class="container2">
+                                            <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                                            <a href="{{ path('removeVid',{id: video.id}) }}" data-toggle="modal" data-target="#modal2{{ video.id }}" >
+                                                <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                                            </a>
+                                        </div>
+                                    {% endautoescape %}
+                                    <div id="modal2{{ video.id }}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete video</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <a href="{{ path('removeVid',{id: video.id}) }}" > <button type="button" class="btn btn-danger" style="background-color: tomato">Delete</button></a>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-            </div>
+                </div>
         </div>
         <div class="notSmart" id="Notcolapse">
                 <div class="show">
                     {% for ima in images %}
-                        <!-- The Modal -->
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Edit an image</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card2">
                             <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
                             <div class="container2">
@@ -154,13 +139,13 @@
                         {% endfor %}
                     </div>
                 </div>
-            </div>
+        </div>
         <hr>
         {{ form_start(form) }}{{ form_label(form.name) }}
         {{ form_widget(form.name) }}{{ form_label(form.description) }}
         {{ form_widget(form.description) }}
         <div class="row">
-            <div class="col-md-6">{{ form_label(form.images) }}{{ form_widget(form.images,{attr: {'placeholder': 'Select one image or many images'}}) }></div>
+            <div class="col-md-6">{{ form_label(form.images) }}{{ form_widget(form.images,{attr: {'placeholder': 'Select one image or many images'}}) }}</div>
             <div class="col-md-6">
                 <ul id="video-fields-list" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.videos|length }}">
                     {% for keywordsField in form.videos %}<li>{{ form_errors(keywordsField) }}{{ form_widget(keywordsField) }}</li>{% endfor %}
@@ -190,3 +175,4 @@
 {{ parent() }}
 {% endblock %}
 {% block javascripts %}{% endblock %}
+

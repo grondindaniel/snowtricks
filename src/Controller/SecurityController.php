@@ -80,9 +80,14 @@ class SecurityController extends AbstractController
         if ($request->isMethod('POST')) {
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            $this->addFlash('message', 'Password update');
+            try{
+                $manager -> persist ( $user );
+                $manager -> flush ();
+                $this->addFlash('pwdok', 'Password update');
+            } catch (\Exception $e) {
+                $this->addFlash('pwdbad', 'Sorry...something goes wrong, try again');
+                return $this->redirectToRoute('app_login');
+            }
             return $this->redirectToRoute('app_login');
         }else
         {

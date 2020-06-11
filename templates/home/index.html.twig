@@ -9,6 +9,26 @@
         <!-- Masthead-->
         <a class="btn btn-primary btn-xl js-scroll-trigger" href="#tricks"><i class="fas fa-arrow-down"></i></a>
         <header class="masthead">
+            {% for message in  app.flashes('success') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('warning') %}
+                <div class="alert danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('updateok') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('updatebad') %}
+                <div class="alert danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 align-self-end">
@@ -41,10 +61,8 @@
                             <img src="{{ asset('img/mac.png') }}" class="img-thumbnail">
                         {% endif %}
                     <div class="container2">
-                        <p>
                           {{ trick.name }}</a>
                             {% if app.user.username is not defined %}
-                        <p></p>
                             {% elseif is_granted('ROLE_ADMIN') or trick.creator == app.user.username %}
                                 <a href="{{ path('edit',{id: trick.id}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                    <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="modal" data-target="#modal1{{ trick.id }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
@@ -64,8 +82,6 @@
                                     </div>
                                 </div>
                             {% endif %}
-                        </p>
-
                     </div>
                     </div>
                 </div>

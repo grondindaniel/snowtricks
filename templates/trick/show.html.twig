@@ -24,7 +24,6 @@
             {% endblock %}
 
         <div class="container" style="margin-top: 10%;">
-
             <div class="img-one">
                 <div class="card3">
                     {% if images.0.name is defined %}
@@ -39,7 +38,7 @@
                     </div>
                 </div>
             </div>
-    <hr>
+             <hr>
             <div class="smart" id="colapse">
                 <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>
                     <div id="demo" class="collapse">
@@ -54,27 +53,23 @@
                             {% endfor %}
                         </div>
                     </div>
-            </div>
+             </div>
             <div class="notSmart" id="Notcolapse">
                     <div class="show">
                         {% for ima in images %}
                             <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail">
                         {% endfor %}
-
                         {% for video in videos %}
                             {% autoescape %}
                                 {{ video.name | raw }} <br>
                             {% endautoescape %}
                         {% endfor %}
                     </div>
-                </div>
-
+            </div>
             <hr>
-
             <p>
                 {{ trick.0.description }}<br>
             </p>
-
             <span class="trick-info">
                 <div class="trick-info1"> Author : {{ trick.0.creator }}</div>  <div class="trick-info1"> Group : {{ trick.0.list }}</div> <div class="trick-info1"> Date : {{ trick.0.createdAt | date("m/d/Y") }}</div>
             </span>
@@ -93,13 +88,23 @@
             </div>
             {% endif %}
             <hr>
+
             {% for comment in comments %}
-                <div class="alert alert-secondary">
+            <div class="blogBo moreBo" style="display: none;">
+                <div class="alert info">
                     <strong>{{ comment.author }} a commenté : </strong> {{ comment.content }}.
                 </div>
+                <br>
+            </div>
             {% endfor %}
-        </div>
 
+
+            <div id="loadMore2" style="color: tomato">
+                Load More
+            </div>
+            <p class="space"></p>
+
+        </div>
             <!-- Smatphone menu -->
             <div class="navbar navbar-expand-lg navbar-light" id="mainNav2">
                 <div class="container">
@@ -115,6 +120,7 @@
                     </a>
                 </div>
             </div>
+
 
 
         {% endblock %}

@@ -6,12 +6,24 @@
 
 <form method="post">
     {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert-danger">
+        <div class="alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        </div>
     {% endif %}
     {% block nav %}
         {{ parent() }}
     {% endblock %}
     <header class="masthead2" style="height: 1000px;">
+        {% for message in  app.flashes('pwdok') %}
+            <div class="alert success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in  app.flashes('pwdbad') %}
+            <div class="alert danger">
+                {{ message }}
+            </div>
+        {% endfor %}
         <div class="container h-50">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end" style="color: white;">
