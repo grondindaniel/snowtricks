@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class TrickController extends AbstractController
 {
     /**
@@ -32,7 +33,6 @@ class TrickController extends AbstractController
         {
             $images = $form->get('images')->getData();
             $trick = $form->getData();
-
             foreach($images as $image)
             {
                 $fichier = md5(uniqid()).'.'.$image->guessExtension();
@@ -64,7 +64,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="show")
+     * @Route("/show/{id}/{slug}", name="show", requirements={"slug"=".+"})
      * @param TrickRepository $trickRepository
      * @param $id
      * @param ImageRepository $imageRepository
@@ -89,6 +89,7 @@ class TrickController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
         }
+
         $comments = $commentRepository->findBy(array('trick'=>$id));
         $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
@@ -136,7 +137,7 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("edit/{id}", name="edit")
+     * @Route("edit/{id}/{slug}", name="edit", requirements={"slug"=".+"})
      */
     public function edit(EntityManagerInterface $manager, Request $request, Trick $trick, ImageRepository $imageRepository, $id, VideoRepository $videoRepository)
     {

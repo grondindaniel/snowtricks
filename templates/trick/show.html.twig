@@ -1,6 +1,7 @@
         {% extends 'base.html.twig' %}
 
         {% block body %}
+
             {% block nav %}
                 <!-- Navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: #C4C2C0;"
@@ -91,10 +92,10 @@
 
             {% for comment in comments %}
             <div class="blogBo moreBo" style="display: none;">
-                <div class="alert info">
-                    <strong>{{ comment.author }} a commenté : </strong> {{ comment.content }}.
-                </div>
-                <br>
+                    <div class="containerC">
+                        <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+                        <strong>{{ comment.author }} a commenté : </strong> {{ comment.content }}.
+                    </div>
             </div>
             {% endfor %}
 

@@ -52,7 +52,8 @@
             </h2>
             <div class="container-home">
                 {% for trick in tricks %}
-                <a href="{{ path('show',{id: trick.id}) }}">
+
+                <a href="{{ path('show',{id: trick.id, slug: trick.name | replace({' ': '-'})}) }}">
                 <div class="card2">
                     <div class="blogBox moreBox" style="display: none;">
                         {% if trick.images.0.name is defined %}
@@ -64,7 +65,7 @@
                           {{ trick.name }}</a>
                             {% if app.user.username is not defined %}
                             {% elseif is_granted('ROLE_ADMIN') or trick.creator == app.user.username %}
-                                <a href="{{ path('edit',{id: trick.id}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
+                                <a href="{{ path('edit',{id: trick.id, slug: trick.name | replace({' ': '-'})}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                    <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="modal" data-target="#modal1{{ trick.id }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                 <div id="modal1{{ trick.id }}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
