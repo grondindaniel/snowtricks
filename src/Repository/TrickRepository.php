@@ -31,6 +31,25 @@ class TrickRepository extends ServiceEntityRepository
             ;
     }
 
+    public function CommentAndProfil($id)
+    {
+
+        $q = "select comment.content, comment.author,comment.trick, comment.created_at, user.username, image_profil.name, trick.id from trick
+INNER JOIN comment ON
+trick.id = comment.trick
+inner join user on
+comment.author = user.username
+inner join image_profil on
+image_profil.id = user.image_profil_id
+";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($q);
+        $stmt->execute([]);
+
+        return $stmt->fetchAll();
+
+    }
+
     public function trickShow($id)
     {
         return $this->createQueryBuilder('p')

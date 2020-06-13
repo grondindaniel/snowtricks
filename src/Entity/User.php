@@ -57,6 +57,23 @@ class User implements UserInterface
     }
 
     /**
+     * @ORM\OneToOne(targetEntity="ImageProfil", cascade={"persist", "remove"})
+     */
+    private $ImageProfil;
+
+
+    public function getImageProfil(): ?ImageProfil
+    {
+        return $this->ImageProfil;
+    }
+
+
+    public function setImageProfil($ImageProfil): void
+    {
+        $this->ImageProfil = $ImageProfil;
+    }
+
+    /**
      * A visual identifier that represents this user.
      *
      * @see UserInterface
