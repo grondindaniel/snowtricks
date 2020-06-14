@@ -109,6 +109,9 @@
                         <div class="card2">
                             <img src="{{ asset('uploads/'~ ima.name) }}" class="img-thumbnail" id="{{ ima.id }}">
                             <div class="container2">
+                                <a href="{{ path('image',{id: ima.id}) }}">
+                                    <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                                </a>
                                 <a href="{{ path('remove',{id: ima.id}) }}" data-toggle="modal" data-target="#modal3{{ ima.id }}" >
                                 <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
                                 </a>

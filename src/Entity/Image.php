@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
@@ -26,6 +27,33 @@ class Image
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
      */
     private $trick;
+
+    private $image;
+
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
+
+    private $file;
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+    public function setFile(UploadedFile $file): void
+    {
+        $this->file = $file;
+    }
 
     public function getId(): ?int
     {
