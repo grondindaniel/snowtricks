@@ -45,7 +45,24 @@ class Trick
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
-    
+
+    /**
+     * @ORM\OneToOne(targetEntity="FeaturedImage", cascade={"persist", "remove"})
+     */
+    private $FeaturedImage;
+
+
+    public function getFeaturedImage(): ?FeaturedImage
+    {
+        return $this->FeaturedImage;
+    }
+
+
+    public function setFeaturedImage($FeaturedImage): void
+    {
+        $this->FeaturedImage = $FeaturedImage;
+    }
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -53,6 +70,7 @@ class Trick
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
+
 
     /**
      * @ORM\Column(type="datetime", nullable=true)

@@ -13,6 +13,7 @@
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('home') }}">Home</a></li>
                                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#tricks">Tricks</a></li>
                                 {% if app.user.email is defined  %}
+                                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('profil_image',{id: app.user.id}) }}">Profil</a></li>
                                     <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{ path('app_logout') }}">Sign out</a></li>
                                 {% else %}
                                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}">Sign in</a></li>
@@ -27,7 +28,9 @@
             <div class="container" style="margin-top: 10%;">
                 <div class="img-one">
                     <div class="card3">
-                        {% if images.0.name is defined %}
+                        {% if featuredImage.0.id == trick.0.id %}
+                            <img src="{{ asset('uploads/'~ featuredImage.0.name) }}">
+                        {% elseif images.0.name is defined %}
                             <img src="{{ asset('uploads/'~ images.0.name) }}">
                         {% else %}
                             <img src="{{ asset('img/mac.png') }}" style="width: 100%">
@@ -102,10 +105,11 @@
                     {% endif %}
                 {% endfor %}
 
-
+ {% if comments |length > 5 %}
                 <div id="loadMore2" style="color: tomato">
                     Load More
                 </div>
+                {% endif %}
                 <p class="space"></p>
 
             </div>

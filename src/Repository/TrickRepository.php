@@ -26,6 +26,7 @@ class TrickRepository extends ServiceEntityRepository
     public function trickHome()
     {
         return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -50,16 +51,17 @@ image_profil.id = user.image_profil_id
 
     }
 
-    public function trickShow($id)
+    public function showFeaturedImage()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.id = :id')
-            ->join('p.images', 'v')
-            ->setParameter('id', $id)
-            ->addSelect('v')
-            ->getQuery()
-            ->getResult()
-            ;
+        $q = "select trick.featured_image_id, trick.id, featured_image.name from trick
+inner join featured_image on
+trick.featured_image_id = featured_image.id;
+";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($q);
+        $stmt->execute([]);
+
+        return $stmt->fetchAll();
     }
 
     /*

@@ -11,6 +11,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('home') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#tricks">Tricks</a></li>
                         {% if app.user.email is defined  %}
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('profil_image',{id: app.user.id}) }}">Profil</a></li>
                             <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{ path('app_logout') }}">Sign out</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ path('app_login') }}">Sign in</a></li>
@@ -22,15 +23,31 @@
         </nav>
     {% endblock %}
     <div class="container" style="margin-top: 10%;">
-            <div class="img-one">
-                <div class="card3">
-                    {% if images.0.name is defined %}
-                        <img src="{{ asset('uploads/'~ images.0.name) }}">
-                    {% else %}
-                        <img src="{{ asset('img/mac.png') }}" style="width: 100%">
-                    {% endif %}
+        <div class="img-one">
+            <div class="card3">
+                {% if featuredImage is defined %}
+                <img src="{{ asset('uploads/'~ featuredImage.0.name) }}">
+                {% elseif images.0.name is defined %}
+                    <img src="{{ asset('uploads/'~ images.0.name) }}">
+                {% else %}
+
+                    <img src="{{ asset('img/mac.png') }}" style="width: 100%">
+                {% endif %}
+                <div class="container2" style="position: relative; top: -350px;right: 350px;">
+                    <a href="{{ path('featured_image',{id: id}) }}">
+                        <i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i>
+                    </a>
+                    <a href="" data-toggle="modal" data-target="" >
+                        <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i>
+                    </a>
+                </div>
+                <div class="container">
+                    <div class="centered">
+                    {{ name.0.name }}
+                    </div>
                 </div>
             </div>
+        </div>
         <hr>
         <div class="smart" id="colapse">
                 <button data-toggle="collapse" data-target="#demo" id="demoB">See medias</button>

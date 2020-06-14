@@ -88,13 +88,14 @@ class TrickController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
         }
+        $featuredImage = $trickRepository->showFeaturedImage();
         $hope = $trickRepository->CommentAndProfil($id);
         $comments = $commentRepository->findBy(array('trick'=>$id));
         $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
         $userImageId = $userRepository->findAll();
-        return $this->render('trick/show.html.twig', array('trick'=>$tricks,'hopes'=>$hope,'comments'=>$comments,'userImageId'=>$userImageId ,'images'=>$images, 'videos'=>$video,'form'=>$form->createView()));
+        return $this->render('trick/show.html.twig', array('featuredImage'=>$featuredImage,'trick'=>$tricks,'hopes'=>$hope,'comments'=>$comments,'userImageId'=>$userImageId ,'images'=>$images, 'videos'=>$video,'form'=>$form->createView()));
     }
 
 
@@ -139,11 +140,12 @@ class TrickController extends AbstractController
     /**
      * @Route("edit/{id}/{slug}", name="edit", requirements={"slug"=".+"})
      */
-    public function edit(EntityManagerInterface $manager, Request $request, Trick $trick, ImageRepository $imageRepository, $id, VideoRepository $videoRepository)
+    public function edit(EntityManagerInterface $manager, Request $request,TrickRepository $trickRepository ,Trick $trick, ImageRepository $imageRepository, $id, VideoRepository $videoRepository)
     {
         $form = $this->createForm(TrickType::class, $trick);
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
+        $name = $trickRepository->findBy(array('id'=>$id));
         $form->handleRequest($request);
         $images2 = $form->get('images')->getData();
         if ($form->isSubmitted() && $form->isValid())
@@ -170,8 +172,8 @@ class TrickController extends AbstractController
             }
             return $this->redirectToRoute('home');
         }
-
-        return $this->render("trick/edit.html.twig", array('images'=>$images,'videos'=>$video,'id'=>$id,'form'=>$form->createView()));
+        $featuredImage = $trickRepository->showFeaturedImage();
+        return $this->render("trick/edit.html.twig", array('featuredImage'=>$featuredImage,'images'=>$images,'name'=>$name,'videos'=>$video,'id'=>$id,'form'=>$form->createView()));
     }
 
 
