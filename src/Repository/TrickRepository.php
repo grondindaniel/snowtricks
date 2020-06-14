@@ -32,7 +32,7 @@ class TrickRepository extends ServiceEntityRepository
             ;
     }
 
-    public function CommentAndProfil($id)
+    public function commentAndProfil($id)
     {
 
         $q = "select comment.content, comment.author,comment.trick, comment.created_at, user.username, image_profil.name, trick.id from trick
