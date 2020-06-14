@@ -26,6 +26,7 @@ class ImageController extends AbstractController
             $file->move($this->getParameter('images_directory'), $fileName);
             $image->setName($fileName);
             $manager->flush();
+            $this->addFlash('successEditImage', 'Good news ! Your picture is updated');
             return $this->redirectToRoute('home');
 
         }

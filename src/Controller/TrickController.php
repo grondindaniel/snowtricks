@@ -49,9 +49,9 @@ class TrickController extends AbstractController
             try{
                 $manager -> persist ( $trick );
                 $manager -> flush ();
-                $this->addFlash('success', 'Cool ! your trick is created. Thank\'s for the community');
+                $this->addFlash('success', 'Cool ! your trick is created. Thank\'s from the community');
             } catch (\Exception $e) {
-                $this->addFlash('warning', 'nope, this name already exists...try with an other.');
+                $this->addFlash('warning', 'nope, this name already exists...try with an other one.');
                 return $this->redirectToRoute('home');
             }
 
@@ -88,13 +88,13 @@ class TrickController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
         }
-        $featuredImage = $trickRepository->showFeaturedImage();
+        $featuredImage = $trickRepository->showFeaturedImage($id);
         $hope = $trickRepository->commentAndProfil($id);
         $comments = $commentRepository->findBy(array('trick'=>$id));
         $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
-        $userImageId = $userRepository->findAll();
+        $userImageId = $userRepository->findBy(array('id'=>$id));
         return $this->render('trick/show.html.twig', array('featuredImage'=>$featuredImage,'trick'=>$tricks,'hopes'=>$hope,'comments'=>$comments,'userImageId'=>$userImageId ,'images'=>$images, 'videos'=>$video,'form'=>$form->createView()));
     }
 
@@ -106,6 +106,7 @@ class TrickController extends AbstractController
     {
         $manager->remove($trick);
         $manager->flush();
+        $this->addFlash('successRemoveId', 'Your trick has been deleted !');
         return $this->redirectToRoute('home');
     }
 
@@ -120,6 +121,7 @@ class TrickController extends AbstractController
     {
         $manager->remove($image);
         $manager->flush();
+        $this->addFlash('successRemoveImage', 'Your picture has been deleted !');
         return $this->redirectToRoute('home');
     }
 
@@ -133,6 +135,7 @@ class TrickController extends AbstractController
     {
         $manager->remove($video);
         $manager->flush();
+        $this->addFlash('successRemoveVideo', 'Your video has been deleted !');
         return $this->redirectToRoute('/');
     }
 
@@ -172,7 +175,7 @@ class TrickController extends AbstractController
             }
             return $this->redirectToRoute('home');
         }
-        $featuredImage = $trickRepository->showFeaturedImage();
+        $featuredImage = $trickRepository->showFeaturedImage($id);
         return $this->render("trick/edit.html.twig", array('featuredImage'=>$featuredImage,'images'=>$images,'name'=>$name,'videos'=>$video,'id'=>$id,'form'=>$form->createView()));
     }
 

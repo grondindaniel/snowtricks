@@ -14,7 +14,7 @@
 
                     <hr class="divider my-4" />
                     {% for flashError in app.flashes('verify_email_error') %}
-                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                        <div class="alert-danger" role="alert">{{ flashError }}</div>
                     {% endfor %}
                     {{ form_start(registrationForm) }}
                     {{ form_row(registrationForm.username) }}

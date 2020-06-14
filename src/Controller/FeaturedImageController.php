@@ -28,6 +28,7 @@ class FeaturedImageController extends AbstractController
             $file->move($this->getParameter('images_directory'), $fileName);
             $picture->setName($fileName);
             $manager->flush();
+            $this->addFlash('successFeaturedImage', 'Cool, your featured image is now updated !');
             return $this->redirectToRoute('home');
 
         }

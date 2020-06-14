@@ -29,6 +29,7 @@ class ProfilImageController extends AbstractController
             $file->move($this->getParameter('images_directory'), $fileName);
             $picture->setName($fileName);
             $manager->flush();
+            $this->addFlash('successProfilImage', 'Good news ! Your profile picture is updated');
             return $this->redirectToRoute('home');
 
         }

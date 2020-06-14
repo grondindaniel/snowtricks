@@ -29,6 +29,36 @@
                     {{ message }}
                 </div>
             {% endfor %}
+            {% for message in  app.flashes('successRemoveId') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('successRemoveImage') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('successRemoveVideo') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('successFeaturedImage') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('successProfilImage') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in  app.flashes('successEditImage') %}
+                <div class="alert success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 align-self-end">
@@ -61,12 +91,14 @@
                         {% else %}
                             <img src="{{ asset('img/mac.png') }}" class="img-thumbnail">
                         {% endif %}
-                    <div class="container2">
+                    <div class="container">
                           {{ trick.name }}</a>
                             {% if app.user.username is not defined %}
                             {% elseif is_granted('ROLE_ADMIN') or trick.creator == app.user.username %}
+                <div class="container3">
                                 <a href="{{ path('edit',{id: trick.id, slug: trick.name | replace({' ': '-'})}) }}"><i class="fas fa-pen" style="float: right; padding: 5px;font-size: 2em"></i></a>
                                    <a href="{{ path('remove',{id: trick.id}) }}" data-toggle="modal" data-target="#modal1{{ trick.id }}" > <i class="fas fa-trash-alt" style="float: right; padding: 5px;font-size: 2em"></i></a>
+                </div>
                                 <div id="modal1{{ trick.id }}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

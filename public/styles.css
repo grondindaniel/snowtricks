@@ -2069,6 +2069,13 @@ pre code {
         border: none;
         border-radius: 10rem;
     }
+    .container2 {
+        padding: 2px 16px;
+        position: absolute;
+        top: -210px!important;
+        right: 10px!important;
+
+    }
 
 }
 @media (max-width: 767.98px) {
@@ -10423,6 +10430,10 @@ img {
 
 .container2 {
     padding: 2px 16px;
+    position: relative;
+    top: -350px;
+    right: 350px;
+
 }
 
 /* load more button */

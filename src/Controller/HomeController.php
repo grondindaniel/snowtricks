@@ -14,7 +14,6 @@ class HomeController extends AbstractController
     public function index(TrickRepository $trickRepository)
     {
         $tricks = $trickRepository->trickHome();
-        $featuredImage = $trickRepository->showFeaturedImage();
-        return $this->render('home/index.html.twig', array('featuredImage'=>$featuredImage,'tricks'=>$tricks));
+        return $this->render('home/index.html.twig', array('tricks'=>$tricks));
     }
 }

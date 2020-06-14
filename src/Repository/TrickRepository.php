@@ -51,11 +51,12 @@ image_profil.id = user.image_profil_id
 
     }
 
-    public function showFeaturedImage()
+    public function showFeaturedImage($fid)
     {
         $q = "select trick.featured_image_id, trick.id, featured_image.name from trick
 inner join featured_image on
-trick.featured_image_id = featured_image.id;
+trick.featured_image_id = featured_image.id
+where trick.id = $fid;
 ";
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($q);
