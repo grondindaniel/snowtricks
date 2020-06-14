@@ -79,7 +79,6 @@ class SecurityController extends AbstractController
 
         if ($request->isMethod('POST')) {
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
-            $entityManager = $this->getDoctrine()->getManager();
             try{
                 $manager -> persist ( $user );
                 $manager -> flush ();
