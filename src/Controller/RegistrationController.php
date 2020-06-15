@@ -39,10 +39,18 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            try{
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $this->addFlash('registerOk', 'We sent you a confirmation email. Please check your email inbox');
+            } catch (\Exception $e) {
+                $this->addFlash('registerbad', 'This email already exists. Try forgot password or create an account with another  one.');
+                return $this->redirectToRoute('home');
+            }
+
+
+
 
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
