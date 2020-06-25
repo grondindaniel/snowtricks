@@ -1,3 +1,5 @@
+Build with Symfony 5, PHP 7.4, MacOs Server
+
 git clone https://github.com/grondindaniel/snowtricks.git
 
 composer install
