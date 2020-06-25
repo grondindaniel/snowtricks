@@ -88,7 +88,7 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", cascade={"persist"})
+     * @ORM\Column(type="string", length=100)
      */
     private $comments;
 

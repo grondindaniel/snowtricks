@@ -40,7 +40,7 @@ INNER JOIN comment ON
 trick.id = comment.trick
 inner join user on
 comment.author = user.username
-inner join image_profil on
+left join image_profil on
 image_profil.id = user.image_profil_id
 ";
 
