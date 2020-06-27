@@ -93,7 +93,7 @@
                 {% endif %}
                 <hr>
 
-                {% for hope in hopes %}
+                {% for hope in hopes | reverse %}
                     {% if trick.0.id == hope.id %}
                         <div class="blogBo moreBo" style="display: none;">
                             <div class="containerC">
