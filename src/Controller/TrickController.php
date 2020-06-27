@@ -91,7 +91,7 @@ class TrickController extends AbstractController
         $featuredImage = $trickRepository->showFeaturedImage($id);
         $hope = $trickRepository->commentAndProfil($id);
         $comments = $commentRepository->findBy(array('trick'=>$id));
-        $tricks = $trickRepository->findBy(array('id'=>$id));
+        $comments = $commentRepository->findByExampleField($id);
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
         $userImageId = $userRepository->findBy(array('id'=>$id));
