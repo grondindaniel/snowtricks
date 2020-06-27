@@ -42,6 +42,7 @@ inner join user on
 comment.author = user.username
 left join image_profil on
 image_profil.id = user.image_profil_id
+order by comment.created_at DESC
 ";
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($q);
