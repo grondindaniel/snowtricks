@@ -25,10 +25,9 @@ class TrickController extends AbstractController
      */
     public function index(TrickType $trickType, Request $request, EntityManagerInterface $manager)
     {
+
         $form = $this->createForm(TrickType::class);
         $form->handleRequest($request);
-
-
 
         if($form->isSubmitted() && $form->isValid())
         {
@@ -90,8 +89,8 @@ class TrickController extends AbstractController
         }
         $featuredImage = $trickRepository->showFeaturedImage($id);
         $hope = $trickRepository->commentAndProfil($id);
-        $comments = $commentRepository->findBy(array('trick'=>$id));
         $comments = $commentRepository->findByExampleField($id);
+        $tricks = $trickRepository->findBy(array('id'=>$id));
         $images = $imageRepository->findBy(array('trick'=>$id));
         $video = $videoRepository->findBy(array('trick'=>$id));
         $userImageId = $userRepository->findBy(array('id'=>$id));
@@ -181,3 +180,4 @@ class TrickController extends AbstractController
 
 
 }
+
