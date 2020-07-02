@@ -4,7 +4,7 @@ git clone https://github.com/grondindaniel/snowtricks.git
 
 composer install
 
-in .env file, configure the database connexion (change db_user and db_password with your own credentials)
+in .env file, configure the database connexion (change db_user and db_password with your own credentials). Think to change prod to dev if you want make tests.
 
 DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/snowtrick?serverVersion=5.7
 
@@ -12,9 +12,7 @@ Next :
 
 symfony console doctrine:database:create
 
-symfony console make:migration
-
-symfony console doctrine:migrations:migrate
+Import snowtrick.sql
 
 in .env file, uncomment MAILER_DSN and configure it with your own credentials.
 
