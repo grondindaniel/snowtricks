@@ -20,7 +20,10 @@ In a terminal lunch a new server with the command :
 
 symfony server:start -d 
 
-Paste the url in a browser, create a new account. By default the role is user. Go to phpmyadmin and in user table change your role to ROLE_ADMIN. 
+Paste the url in a browser.
+
+Log in with username: root and password: password
+
 
 Finish ! You are now the admin and you have all the permissions  for CRUD.
 
