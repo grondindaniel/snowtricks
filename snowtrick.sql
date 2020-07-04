@@ -298,6 +298,7 @@ ALTER TABLE `migration_versions`
 --
 ALTER TABLE `trick`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
   ADD UNIQUE KEY `UNIQ_D8F0A91E3569D950` (`featured_image_id`);
 
 --
