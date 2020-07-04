@@ -27,3 +27,4 @@ Log in with username: root and password: password
 
 Finish ! You are now the admin and you have all the permissions  for CRUD.
 
+[![SymfonyInsight](https://insight.symfony.com/projects/e53f3e23-6136-428f-8c8c-d3555dd44320/small.svg)](https://insight.symfony.com/projects/e53f3e23-6136-428f-8c8c-d3555dd44320)
